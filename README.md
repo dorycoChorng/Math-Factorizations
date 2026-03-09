@@ -1,4 +1,4 @@
-# Factoring-Math-Equat
+# Math Factorizations
 
 # Description
 This project will be analyze from:
