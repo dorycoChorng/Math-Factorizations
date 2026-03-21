@@ -31,13 +31,25 @@ def gcdThreeArgs(a:int , b:int , c:int) -> int:
 
 # Function for solving the body of infinite Greatest Common Factor
 def gcdArguements(numbers, length_Arrays:int) -> int:
-    for n in range (0,length_Arrays):
+    n = 0
+    others = []
+
+    # Create var for GCD
+    
+
+    while n < length_Arrays - 1:
         if n == 0:
-            gcdNum = gcdTwoArgs(numbers[n] + numbers[n+1])
+            gcdFirst = gcdTwoArgs(numbers[n] , numbers[n+1])
         else:
-            gcdNums = gcdTwoArgs(numbers[n+1] , numbers[n+2])
-            
-    return gcdTwoArgs(gcdNum,gcdNums)
+            gcdOtherwise = gcdTwoArgs(numbers[n+1] , numbers[n+2])
+            others.append(gcdOtherwise)
+        n += 1
+    
+    # Solve the numbers separately
+    return gcdTwoArgs(gcdFirst,gcdArguements(others,len(others))) # Recursive again cuz there might be infite ones
+
+
+
 
 
 
@@ -50,3 +62,4 @@ def gcd(*numbers) -> int:
     
     # When it not even
     else:
+        
