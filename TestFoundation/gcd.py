@@ -35,18 +35,20 @@ def gcdArguements(numbers, length_Arrays:int) -> int:
     others = []
 
     # Create var for GCD
-    
+
 
     while n < length_Arrays - 1:
+        global x
         if n == 0:
             gcdFirst = gcdTwoArgs(numbers[n] , numbers[n+1])
         else:
             gcdOtherwise = gcdTwoArgs(numbers[n+1] , numbers[n+2])
             others.append(gcdOtherwise)
+
         n += 1
     
     # Solve the numbers separately
-    return gcdTwoArgs(gcdFirst,gcdArguements(others,len(others))) # Recursive again cuz there might be infite ones
+    return gcdTwoArgs(gcdFirst,gcdArguements(others,len(others))) # Recursive again cuz there might be Infinite ones
 
 
 
@@ -58,8 +60,12 @@ def gcd(*numbers) -> int:
     length_Array = len(numbers)
     # When the length of the tuples which we don't know how many numbers (If it a even Nums)
     if length_Array % 2 == 0:
-        gcdArguements(numbers,length_Array)
-    
-    # When it not even
+        return gcdArguements(numbers,length_Array)
     else:
-        
+    # When it not even
+        oddArray = length_Array -1
+        return gcdArguements(numbers,length_Arrays=oddArray)
+
+
+
+print(gcd(9,36))
