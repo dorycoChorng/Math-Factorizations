@@ -28,29 +28,6 @@ def gcdThreeArgs(a:int , b:int , c:int) -> int:
         remainders = gcdTwoArgs(a,b) % c
         return gcdTwoArgs(c,remainders)
 
-
-# Function for solving the body of infinite Greatest Common Factor
-def gcdArguements(numbers, length_Arrays:int) -> int:
-    n = 0
-    others = []
-
-    # Create var for GCD
-
-
-    while n < length_Arrays - 1:
-        global x
-        if n == 0:
-            gcdFirst = gcdTwoArgs(numbers[n] , numbers[n+1])
-        else:
-            gcdOtherwise = gcdTwoArgs(numbers[n+1] , numbers[n+2])
-            others.append(gcdOtherwise)
-
-        n += 1
-    
-    # Solve the numbers separately
-    return gcdTwoArgs(gcdFirst,gcdArguements(others,len(others))) # Recursive again cuz there might be Infinite ones
-
-
 # Function for solving the arguments evenly
 def gcdEven(arrays:list , length:int , anotherArray:list) ->list:
     # arrays --> The original array
@@ -72,25 +49,32 @@ def gcdEven(arrays:list , length:int , anotherArray:list) ->list:
 
 # When there is nth arguement taken
 def gcd(*numbers) -> int:
-    # length_Array = len(numbers)
-    # # When the length of the tuples which we don't know how many numbers (If it a even Nums)
-    # if length_Array % 2 == 0:
-    #     return gcdArguements(numbers,length_Array)
-    # else:
-    # # When it not even
-    #     oddArray = length_Array -1
-    #     return gcdArguements(numbers,length_Arrays=oddArray)
-
     length = len(numbers)
     anotherArray = [] # Array on recursive methods
+
+    # If the length is even
     if length % 2 == 0:
         gcdEven(arrays=numbers,length=length,anotherArray=anotherArray)
-        return anotherArray
+        # Look the conditions if the length of another array is 2 or 3
+        if len(anotherArray) == 2:
+            return gcdTwoArgs(anotherArray[0],anotherArray[1])
+        elif len(anotherArray) == 1:
+            return gcdTwoArgs(numbers[0],numbers[1])
+        elif len(anotherArray) == 3:
+            return gcdThreeArgs(anotherArray[0],anotherArray[1],anotherArray[2])
     else:
+        # The odd length of the array, so we need to separate the last index and solve the rest of the array
         lengthsOdd = length -1
         gcdEven(arrays=numbers,length=lengthsOdd,anotherArray=anotherArray)
         anotherArray.append(numbers[len(numbers) - 1]) # end index
+        if len(anotherArray) == 2:
+            return gcdTwoArgs(anotherArray[0],anotherArray[1])
+        elif len(anotherArray) == 3:
+            return gcdThreeArgs(anotherArray[0],anotherArray[1],anotherArray[2])
+       
 
 
 
-print(gcd(8,12,12,45,78,234,12))
+nums = (8, 12, 20, 45, 67, 89, 12)
+
+print(gcd(nums))
