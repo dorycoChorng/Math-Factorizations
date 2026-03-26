@@ -12,7 +12,9 @@ After that we will get:
 <h3>**How do we solve this?**</h3>
 <h4>**The issue of the problem of odd nums**</h4>
 * It hard to sum it up and have 1 index in the array unlike there is even numbers which can divide into pairs equally.
+
 **The way we can solve this odd nums**
+
 * We need to get rid of the last index and store into another variable for future use
 * Then, we can use called out the function that we created which is called separation() function for breaking the array down into smaller pair
 * Then, the process of the function will be the same step as above and we add the end index to the array
