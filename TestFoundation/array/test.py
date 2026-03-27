@@ -1,4 +1,4 @@
-# The case
+# The Cases
 caseOne = [1,2]
 caseTwo = [1,2,3]
 caseThree = [1,2,3,4,5]
