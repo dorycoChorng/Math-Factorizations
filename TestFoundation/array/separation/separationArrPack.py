@@ -1,6 +1,5 @@
-# import
-from ..TestFoundation import gcdPackage as gcds
-
+# impport
+from TestFoundation import gcdPackage
 class separationArray:
     def _init_(self,array:list):
         self.array = array
