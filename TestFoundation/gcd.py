@@ -7,7 +7,11 @@ Let say: A is a quotient equation (A = B*y + R); Then GCD(A,B) = GCD(B,R)
 
 '''
 
+
+
 import time
+
+from TestFoundation.array.separation.separationArrPack import separationArray
 
 # When there is 2 arguements taken
 def gcdTwoArgs(a:int , b:int) -> int:
@@ -49,32 +53,12 @@ def gcdEven(arrays:list , length:int , anotherArray:list) ->list:
 
 # When there is nth arguement taken
 def gcd(*numbers) -> int:
-    length = len(numbers)
-    anotherArray = [] # Array on recursive methods
-
-    # If the length is even
-    if length % 2 == 0:
-        gcdEven(arrays=numbers,length=length,anotherArray=anotherArray)
-        # Look the conditions if the length of another array is 2 or 3
-        if len(anotherArray) == 2:
-            return gcdTwoArgs(anotherArray[0],anotherArray[1])
-        elif len(anotherArray) == 1:
-            return gcdTwoArgs(numbers[0],numbers[1])
-        elif len(anotherArray) == 3:
-            return gcdThreeArgs(anotherArray[0],anotherArray[1],anotherArray[2])
-    else:
-        # The odd length of the array, so we need to separate the last index and solve the rest of the array
-        lengthsOdd = length -1
-        gcdEven(arrays=numbers,length=lengthsOdd,anotherArray=anotherArray)
-        anotherArray.append(numbers[len(numbers) - 1]) # end index
-        if len(anotherArray) == 2:
-            return gcdTwoArgs(anotherArray[0],anotherArray[1])
-        elif len(anotherArray) == 3:
-            return gcdThreeArgs(anotherArray[0],anotherArray[1],anotherArray[2])
-       
+    # Use separationArray class from package
+    separation = separationArray(numbers)
+    
+    returning = separation.separation() # Turn the value array as a list
+    return returning[0]
 
 
 
-nums = (8, 12, 20, 45, 67, 89, 12)
-
-print(gcd(nums))
+print(gcd([12,24]))
